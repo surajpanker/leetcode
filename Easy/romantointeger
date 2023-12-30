@@ -1,0 +1,25 @@
+//https://leetcode.com/problems/roman-to-integer/
+
+class Solution {
+
+    public int romanToInt(String s) {
+        Map<Character, Integer> rmInt=new HashMap<Character, Integer>();
+        rmInt.put('I',1);
+        rmInt.put('V',5);
+        rmInt.put('X',10);
+        rmInt.put('L',50);
+        rmInt.put('C',100);
+        rmInt.put('D',500);
+        rmInt.put('M',1000);
+
+        int ans=0;
+        for(int i=0;i<s.length();i++){
+
+            if( i<s.length()-1 && rmInt.get(s.charAt(i))<rmInt.get(s.charAt(i+1)) )
+               ans-=rmInt.get(s.charAt(i));
+             else
+               ans+=rmInt.get(s.charAt(i));
+        }
+        return ans;
+    }
+}
